@@ -12,8 +12,12 @@ export default async function Home({
   return (
     <div className="max-w-2xl mx-auto">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Find Your Perfect Paint Color</h1>
-        <p className="text-gray-600">Choose any color to find matching Sherwin-Williams paint colors</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          Find Your Perfect Paint Color
+        </h1>
+        <p className="text-gray-600">
+          Choose any color to find matching Sherwin-Williams paint colors
+        </p>
       </div>
 
       <div className="bg-white rounded-lg shadow-lg p-6">
