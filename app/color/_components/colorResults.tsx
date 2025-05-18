@@ -1,7 +1,6 @@
-import React from "react";
 import { ColorMatch } from "../../types/colors";
 
-const ColorResults = ({ matches }: { matches: ColorMatch[] }) => {
+export default function ColorResults({ matches }: { matches: ColorMatch[] }) {
   return (
     <>
       {matches.length > 0 && (
@@ -25,4 +24,3 @@ const ColorResults = ({ matches }: { matches: ColorMatch[] }) => {
   );
 };
 
-export default ColorResults;

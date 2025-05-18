@@ -1,42 +1,27 @@
-"use client";
-
-import { useState } from "react";
 import { findClosestColors } from "./actions/findClosestColors";
-import { ColorMatch } from "./types/colors";
-import ColorResults from "./color/_components/colorResults";
-
-export default function Home() {
-  const [color, setColor] = useState("#000000");
-  const [matches, setMatches] = useState<ColorMatch[]>([]);
-
-  const handleColorChange = async (newColor: string) => {
-    setColor(newColor);
-    const closestColors = await findClosestColors(newColor);
-    setMatches(closestColors);
-  };
+import ColorPicker from "./color/_components/ColorPicker";
+import ColorResults from "./color/_components/ColorResults";
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { color?: string };
+}) {
+  const color = searchParams.color ? `#${searchParams.color}` : "#000000";
+  const matches = await findClosestColors(color);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 gap-4">
-      <h1 className="text-2xl font-bold mb-4">Color Picker</h1>
-
-      <div className="flex flex-col items-center gap-4">
-        <input
-          type="color"
-          value={color}
-          onChange={(e) => handleColorChange(e.target.value)}
-          className="w-24 h-12 cursor-pointer"
-        />
-
-        <div className="flex flex-col items-center gap-2">
-          <div
-            className="w-32 h-32 border border-gray-200"
-            style={{ backgroundColor: color }}
-          />
-          <p className="font-mono">{color.toUpperCase()}</p>
-        </div>
-
-        <ColorResults matches={matches} />
+    <div className="max-w-2xl mx-auto">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Find Your Perfect Paint Color</h1>
+        <p className="text-gray-600">Choose any color to find matching Sherwin-Williams paint colors</p>
       </div>
-    </main>
+
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <div className="space-y-8">
+          <ColorPicker />
+          <ColorResults matches={matches} />
+        </div>
+      </div>
+    </div>
   );
 }
