@@ -9,12 +9,12 @@ export default function ColorPicker() {
   const color = colorParam ? `#${colorParam}` : "#000000";
 
   const handleColorChange = (newColor: string) => {
-    router.replace(`/?color=${newColor.substring(1)}`);
+    router.replace(`/?color=${newColor.substring(1).toUpperCase()}`);
   };
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="relative group">
+      <div className="relative group" role="group" aria-label="Choose color">
         <label
           htmlFor="color-input"
           className="block w-40 h-40 rounded-lg border-2 border-gray-200 overflow-hidden cursor-pointer transition-all duration-200 group-hover:border-gray-300 group-hover:shadow-lg"
@@ -24,6 +24,7 @@ export default function ColorPicker() {
         </label>
         <input
           id="color-input"
+          data-testid="color-input"
           type="color"
           value={color}
           onChange={(e) => handleColorChange(e.target.value)}
